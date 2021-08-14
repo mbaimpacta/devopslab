@@ -13,11 +13,23 @@ install:
 script:
   - python -m unittest -v test
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_69026ffcf008_key -iv $encrypted_69026ffcf008_iv
+  - in aula-devops-cloud-0dc060e083a0.json.enc -out ../aula-devops-cloud-0dc060e083a0.json
+              -d
+
 # Definir o Deploy no Heroku
 deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
-  edge: true 
-  app: deveopslab
-  on:
+  - provider: heroku
+    api_key: $HEROKU_API_KEY
+    edge: true 
+    app: deveopslab
+    on:
+      branch: main
+
+ #Definir o deploy no google appEngine
+  - provider: gae
+    keyfile: ../aula-devops-cloud-0dc060e083a0.json
+    project: aula-devops-cloud
+    on:
       branch: main
