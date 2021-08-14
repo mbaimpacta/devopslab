@@ -1,12 +1,12 @@
 # Linguagem Utilizada para Desenvolver a Aplicação
 language: python
 
-os: linux
-dist: xenial
-
 # Versão que a aplicação suporta.
 python:
   - "3.7.9"
+
+os: linux
+dist: xenial
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_69026ffcf008_key -iv $encrypted_69026ffcf008_iv
@@ -21,8 +21,7 @@ jobs:
       # Instalação de Módulos que são necessários para a Aplicação.
       install:
         - pip install flask flask-wtf coverage
-        # Defini o script de Teste que deve rodar toda vez que o código for alterado.
-        script:
+        script: # Defini o script de Teste que deve rodar toda vez que o código for alterado.
           - coverage run test.py || travis_terminate 1;
           - coverage report app.py || travis_terminate 1;
           - coverage xml app.py || travis_terminate 1;
