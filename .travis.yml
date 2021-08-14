@@ -21,8 +21,8 @@ jobs:
       # Instalação de Módulos que são necessários para a Aplicação.
       install:
         - pip install flask
-        script: # Defini o script de Teste que deve rodar toda vez que o código for alterado.
-          - python -m unittest -v test || travis_terminate 1;         
+      script: # Defini o script de Teste que deve rodar toda vez que o código for alterado.
+        - python -m unittest -v test || travis_terminate 1;         
 
     - stage: STG Deploy
       script: skip
